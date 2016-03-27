@@ -9,12 +9,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" You Complete Me
-Plugin 'Valloric/YouCompleteMe'
-
-" VIM Markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " all Plugins must be added before the following line
 call vundle#end()	" required
@@ -33,22 +31,19 @@ set expandtab		" tabs are spaces
 
 " => UI Config
 syntax on
-colorscheme buddy
+colorscheme solarized
+set background=dark
 set number		" show line numbers
-set showcmd		" show command in bottom bar
+
+
 set cursorline		" highlight current line
 set wildmenu		" visual autocomplete for command menu
 set lazyredraw		" redraw only when we need to
 set showmatch		" hight matching {{(
 
 " => Searching
-set incsearch		" search as characters are entered
-set hlsearch		" highlight matches
-
-
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk 
+" set incsearch		" search as characters are entered
+" set hlsearch		" highlight matches
 
 " move to beginning/end of line
 nnoremap B ^
@@ -58,3 +53,6 @@ nnoremap ^ <nop>
 
 " change <esc> key to leave i mode
 inoremap jk <ESC>
+
+" fix issues with backspace in <insert> mode
+set backspace=indent,eol,start
