@@ -49,14 +49,15 @@ mkdir -p $DOTFILES/vim/tmp/swap
 mkdir -p $DOTFILES/vim/tmp/backup
 mkdir -p $DOTFILES/vim/tmp/undo
 
-# # ssh
+# ssh
 mkdir $HOME/.ssh
 ln -s $DROPBOX/keys/config $HOME/.ssh/config
 cp $DROPBOX/keys/honza $HOME/.ssh/honza
 cp $DROPBOX/keys/honza.pub $HOME/.ssh/honza.pub
 
-# # git
+# git
 ln -s $DROPBOX/keys/gitconfig $HOME/.gitconfig
+ln -s $DOTFILES/aws $HOME/.aws
 
 cd $GITHUB && git clone git://github.com/joyent/node.git
 cd $GITHUB/node && ./configure && make && make install
