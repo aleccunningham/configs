@@ -1,0 +1,26 @@
+[alias]
+    co = checkout
+    br = branch
+    st = status
+
+[user]
+    name = Alec Cunningham
+    email = aleccunningham96@gmail.com
+
+[credential]
+    helper = osxkeychain
+
+[push]
+    default = current
+
+[github]
+    user = aleccunningham
+
+[color]
+    ui = true
+
+[core]
+    editor = vim
+
+[web]
+    browser = open
