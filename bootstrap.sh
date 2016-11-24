@@ -14,7 +14,6 @@ set -e
 set -u
 
 DOTFILES=$HOME/dotfiles
-DROPBOX=$HOME/Dropbox
 CODE=$HOME/Code
 GITHUB=$HOME/Github
 
@@ -26,7 +25,7 @@ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 export PATH=/usr/local/bin:$PATH
 
 echo "Installing all the homebrew things..."
-brew install ack autoconf automake cmake contacts ctags ffmpeg fishfish git gnu-tar gnu-typist gnupg go haskell-platform iftop irssi mercurial mobile-shell msmtp nettle openssl reattach-to-user-namespace ruby tmux tree unrar urlview wget xapian xz
+brew install ack automake cmake git openssl reattach-to-user-namespace ruby tmux unrar wget
 
 echo "Updating submodules..."
 git submodule init
@@ -39,33 +38,19 @@ echo "Installing pip and virtualenv..."
 easy_install pip
 pip install virtualenv virtualenvwrapper fabric pep8 flake8 subliminal pytmux
 
-# rc files
+echo "Linking rc files"
 ln -s $DOTFILES/vimrc $HOME/.vimrc
 ln -s $DOTFILES/vim $HOME/.vim
 ln -s $DOTFILES/bashrc $HOME/.bashrc
-ln -s $DOTFILES/ackrc $HOME/.ackrc
+ln -s $DOTFILES/bash_profile $HOME/.bash_profile
+ln -s $DOTFILES $HOME/.profile
 
 mkdir -p $DOTFILES/vim/tmp/swap
 mkdir -p $DOTFILES/vim/tmp/backup
 mkdir -p $DOTFILES/vim/tmp/undo
 
-# ssh
-mkdir $HOME/.ssh
-ln -s $DROPBOX/keys/config $HOME/.ssh/config
-cp $DROPBOX/keys/honza $HOME/.ssh/honza
-cp $DROPBOX/keys/honza.pub $HOME/.ssh/honza.pub
-
 # git
-ln -s $DROPBOX/keys/gitconfig $HOME/.gitconfig
-ln -s $DOTFILES/aws $HOME/.aws
+ln -s $DOTFILES/gitconfig $HOME/.gitconfig
 
 cd $GITHUB && git clone git://github.com/joyent/node.git
 cd $GITHUB/node && ./configure && make && make install
-
-cd $GITHUB && hg clone https://vim.googlecode.com/hg/ vim
-cp $DOTFILES/compile-vim.sh $GITHUB/vim/compile-vim.sh
-chmod +x $GITHUB/vim/compile-vim.sh
-cd $GITHUB/vim && ./compile-vim.sh
-
-npm install -g coffee-script
-npm install -g uglify-js
