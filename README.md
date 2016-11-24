@@ -1,27 +1,16 @@
-# os-x defaults 
+# Dotfiles, with a focus on OSX security
 
 A collection of files with shortcuts and plugins that I use on a day to day basis, and would install on any new machine.
 
-### python
 
-`pip install virtualenv virtualenvwrapper powerline django django-extensions requests`
-[powerline fonts](https://github.com/powerline/fonts.git)
+### Applications
 
-### rust
-
-[Download](https://static.rust-lang.org/dist/rust-1.8.0-x86_64-apple-darwin.pkg)
-
-### javascript
-
-- [node.js](https://nodejs.org/dist/v4.4.4/node-v4.4.4.pkg)
-
-
-### applications
-
-- MacVim
-- Atom
-- Chrome
-- Firefox
-- Spotify
-- Adium
-- iTerm
+- [MacVim](https://github.com/macvim-dev/macvim)
+- [ZSH](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+- [VLC](http://www.videolan.org/vlc/index.html)
+- [Atom](https://atom.io/)
+- [Chrome](https://www.google.com/chrome/browser/desktop/index.html?brand=CHBD&gclid=CjwKEAiAmdXBBRD0hZCVkYHTl20SJACWsZj9W1UsnOAkQUHgjPlY3GoWlen8B4C1M_JwdZHmg3QcyBoCL7zw_wcB)
+- [Firefox](https://www.mozilla.org/en-US/firefox/new/?gclid=CjwKEAiAmdXBBRD0hZCVkYHTl20SJACWsZj9bcBXknE3i77C00gd1cx28dAAF9wFFous_lXxso1N-RoCd2_w_wcB&utm_campaign=Firefox-Brand-US-GGL-Exact&utm_medium=paidsearch&utm_source=google&utm_term=%23firefox)
+- [Adium](https://beta.adium.im/)
+- [iTerm](https://www.iterm2.com/)
