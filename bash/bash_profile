@@ -1,0 +1,15 @@
+# bash settings
+if [[ -L ~/.bashrc ]]; 
+   then source bashrc
+fi
+
+# core settings
+if [[ -L ~/.profile ]];
+   then source profile
+fi
+
+echo "Welcome, Alec"
+sleep .5
+echo "Loading .bashrc"
+sleep .5
+echo "Loading .profile"
