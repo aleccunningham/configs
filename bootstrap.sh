@@ -49,12 +49,13 @@ ln -s $DOTFILES/vim/vimrc $HOME/.vimrc
 ln -s $DOTFILES/vim $HOME/.vim
 
 e_bold "Linking bash files"
-ln -s $DOTFILES/bash/bashrc $HOME/.bashrc
-ln -s $DOTFILES/bash/bash_profile $HOME/.bash_profile
-ln -s $DOTFILES $HOME/.profile
+ln -s $DOTFILES/shell/bashrc $HOME/.bashrc
+ln -s $DOTFILES/shell/bash_profile $HOME/.bash_profile
+ln -s $DOTFILES/shell/profile $HOME/.profile
 
 e_bold "Linking gitconfigs"
-ln -s $DOTFILES/gitconfig $HOME/.gitconfig
+ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
+ln -s $DOTFILES/git/gitignore $HOME/.gitignore
 
 sleep 0.5
 e_success "All dotfiles linked successfully!"
