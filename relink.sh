@@ -25,6 +25,7 @@ relink ~/.gitignore    $DOTFILES/git/gitignore
 relink ~/.vimrc        $DOTFILES/vim/vimrc
 relink ~/.vim          $DOTFILES/vim
 relink ~/.tmux.conf    $DOTFILES/tmux.conf
+relink ~/.ssh/ssh_config $DOTFILES/ssh_config
 relink ~/Library/init/utils.sh $DOTFILES/utils/utils.sh
 
 e_success "Success!"

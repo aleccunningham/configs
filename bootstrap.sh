@@ -15,15 +15,16 @@ source utils/utils.sh
 set -u
 
 DOTFILES="$HOME/dotfiles"
+
 CODE="$HOME/Code"
 GITHUB="$HOME/Github"
 INIT="~/Library/init/"
 
+e_header "Create config directories if absent"
 if [[ ! -d $CODE ]] ; then mkdir -p $CODE
 if [[ ! -d $GITHUB ]] ; then mkdir -p $GITHUB
 if [[ ! -d $INIT ]] ; then sudo mkdir -p $INIT
-
-mkdir -p ~/.gnupg ; chmod 700 ~/.gnupg
+e_success "Directories created"
 
 e_header "Installing homebrew..."
 ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
@@ -31,16 +32,16 @@ export PATH=/usr/local/bin:$PATH
 
 e_header "Installing all the homebrew things..."
 brew install ack automake cmake git openssl ruby tmux unrar wget
-e_success "Done!"
+e_success "Done"
 
 e_header "Installing Python..."
 brew install python --framework
-e_success "Done!"
+e_success "Done"
 
 e_header "Installing pip and virtualenv..."
 easy_install pip
 pip install virtualenv virtualenvwrapper fabric pep8 flake8 subliminal pytmux
-e_success "Done!"
+e_success "Done"
 
 e_header "Creating symlinks"
 sleep 0.5
@@ -58,7 +59,6 @@ link() {
     e_error "$1 exists as a real file, skipping."
   fi
 }
-
 
 e_bold "Linking utils file"
 link /Library/init/utils.sh $DOTFILES/utils/utils.sh
@@ -83,10 +83,22 @@ sleep 0.5
 e_success "All dotfiles linked successfully!"
 
 e_bold "Make vim tmp dirs"
-mkdir -p $DOTFILES/vim/tmp/swap
-mkdir -p $DOTFILES/vim/tmp/backup
-mkdir -p $DOTFILES/vim/tmp/undo
+mkdir -p ~/.vim/{backups,swaps,undo}
 
+e_header "GPG, PGP, and SSH config"
+brew install gnupg2
+e_bold "Create GPG and SSH folders"
+mkdir -p ~/.gnupg ; chmod 700 ~/.gnupg
+mkdir -p ~/.ssh ; chmod 700 ~/.ssh
+
+e_bold "Link those configs"
+link ~/.ssh/ssh_config    $DOTFILES/ssh_config
+link ~/.gnupg/gpg.conf    $DOTFILES/gpg.conf
+
+e_bold "Install keyservers CA Certificate to /etc/"
+sudo curl -s "https://sks-keyservers.net/sks-keyservers.netCA.pem" -o /etc/sks-keyservers.netCA.pem
+
+# installing nodejs
 seek_confirmation "Do you want to install node.js?"
 if is_confirmed; then
   cd $GITHUB && git clone git://github.com/joyent/node.git &&
