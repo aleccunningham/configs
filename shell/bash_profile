@@ -5,12 +5,12 @@ POWERLINE_BASH_SELECT=1
 
 # bash settings
 if [[ -L ~/.bashrc ]];
-   then source .bashrc
+   then source ~/.bashrc
 fi
 
 # core settings
 if [[ -L ~/.profile ]];
-   then source .profile
+   then source ~/.profile
 fi
 
 echo "Welcome, Alec"

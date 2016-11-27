@@ -24,3 +24,6 @@ relink ~/.gitconfig    $DOTFILES/git/gitconfig
 relink ~/.gitignore    $DOTFILES/git/gitignore
 relink ~/.vimrc        $DOTFILES/vim/vimrc
 relink ~/.vim          $DOTFILES/vim
+relink ~/.tmux.conf    $DOTFILES/tmux.conf
+
+e_success "Success!"

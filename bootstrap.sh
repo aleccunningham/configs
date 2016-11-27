@@ -57,6 +57,9 @@ e_bold "Linking gitconfigs"
 ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
 ln -s $DOTFILES/git/gitignore $HOME/.gitignore
 
+e_bold "Linking tmux"
+ln -s $DOTFILES/tmux.conf $HOME/.tmux.conf
+
 sleep 0.5
 e_success "All dotfiles linked successfully!"
 
