@@ -6,7 +6,7 @@
 # This should be run from the default login shell
 set -e
 
-echo "Source utilities for bootstrapping"
+e_bold "Source utilities for bootstrapping"
 source utils/utils.sh
 
 # Treat unset variables as an error when performing parameter expansion. An
