@@ -2,8 +2,41 @@
 
 A collection of files with shortcuts and plugins that I use on a day to day basis, and would install on any new machine.
 
+## Installation
+
+Running bootstrap.sh will:
+- Create ~/Code, ~/Github, and ~/Library/init/
+  - Personal projects are located in Code, a mix of Github repositories for configs can be cloned to Github, and init is used for assorted bash scripts
+- Install Homebrew
+  - ack, automake, cmake, git, openssl, ruby, tmux, unrar, wget
+- Install Python, with the following packages:
+ - virtualenv, virtualenvwrapper, fabric, pep8, flake8, subliminal, pytmux
+- Create symlinks for:
+  - utils.sh
+  - .bash_profile
+  - .bashrc
+  - .profile
+  - .gitconfig
+  - .gitignore
+  - tmux.conf
+- Vim folders for swap, backup, and undo
+- Optionally; install node.js
+
+### macOS
+
+Along with bootstrap.sh that universally applies to most UNIX distributions, script files osx.sh applies some great defaults for a clean macOS install.
+
+### Security
+
+Please, checkout drduh's [macOS security guide](https://github.com/drduh/macOS-Security-and-Privacy-Guide) to lock down your system from those three letter organizations...  ``` ¯\_(ツ)_/¯ ```
+
+### Documentation
+
+Most dotfiles are documented via comments, and bootstrap.sh along with osx.sh echo their commands. Enjoy!
 
 ### Applications
+
+The following applications are recommended to include with a clean install:
 
 - [MacVim](https://github.com/macvim-dev/macvim)
 - [ZSH](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH)

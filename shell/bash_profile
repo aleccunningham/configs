@@ -3,6 +3,8 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 . /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
 
+source ~/Library/init/utils.sh
+
 # bash settings
 if [[ -L ~/.bashrc ]];
    then source ~/.bashrc
@@ -13,8 +15,8 @@ if [[ -L ~/.profile ]];
    then source ~/.profile
 fi
 
-echo "Welcome, Alec"
+e_header "Welcome, Alec"
 sleep .5
-echo "Loading .bashrc"
+e_success "Loading .bashrc"
 sleep .5
-echo "Loading .profile"
+e_success "Loading .profile"

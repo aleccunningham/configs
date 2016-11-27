@@ -14,19 +14,23 @@ source utils/utils.sh
 # shell will exit.
 set -u
 
-DOTFILES=$HOME/dotfiles
-CODE=$HOME/Code
-GITHUB=$HOME/Github
+DOTFILES="$HOME/dotfiles"
+CODE="$HOME/Code"
+GITHUB="$HOME/Github"
+INIT="~/Library/init/"
 
 if [[ ! -d $CODE ]] ; then mkdir -p $CODE
-if [[ ! -d $GITHUB ]] : then mkdir -p $GITHUB
+if [[ ! -d $GITHUB ]] ; then mkdir -p $GITHUB
+if [[ ! -d $INIT ]] ; then sudo mkdir -p $INIT
+
+mkdir -p ~/.gnupg ; chmod 700 ~/.gnupg
 
 e_header "Installing homebrew..."
 ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 export PATH=/usr/local/bin:$PATH
 
 e_header "Installing all the homebrew things..."
-brew install ack automake cmake git openssl reattach-to-user-namespace ruby tmux unrar wget
+brew install ack automake cmake git openssl ruby tmux unrar wget
 e_success "Done!"
 
 e_header "Installing Python..."
@@ -41,24 +45,39 @@ e_success "Done!"
 e_header "Creating symlinks"
 sleep 0.5
 
+link() {
+  if [[ -h "$1" ]]; then
+    e_warning "Relinking $1"
+    # Symbolic link? Then recreate.
+    rm "$1"
+    ln -sn "$2" "$1"
+  elif [[ ! -e "$1" ]]; then
+    e_success "Linking $1 to $2"
+    ln -sn "$2" "$1"
+  else
+    e_error "$1 exists as a real file, skipping."
+  fi
+}
+
+
 e_bold "Linking utils file"
-ln -s $DOTFILES/utils/utils.sh $HOME/Library/init/utils.sh
+link /Library/init/utils.sh $DOTFILES/utils/utils.sh
 
 e_bold "Linking vim files"
-ln -s $DOTFILES/vim/vimrc $HOME/.vimrc
-ln -s $DOTFILES/vim $HOME/.vim
+link ~/.vimrc        $DOTFILES/vim/vimrc
+link ~/.vim          $DOTFILES/vim
 
 e_bold "Linking bash files"
-ln -s $DOTFILES/shell/bashrc $HOME/.bashrc
-ln -s $DOTFILES/shell/bash_profile $HOME/.bash_profile
-ln -s $DOTFILES/shell/profile $HOME/.profile
+link ~/.bash_profile $DOTFILES/shell/bash_profile
+link ~/.bashrc       $DOTFILES/shell/bashrc
+link ~/.profile      $DOTFILES/shell/profile
 
 e_bold "Linking gitconfigs"
-ln -s $DOTFILES/git/gitconfig $HOME/.gitconfig
-ln -s $DOTFILES/git/gitignore $HOME/.gitignore
+link ~/.gitconfig    $DOTFILES/git/gitconfig
+link ~/.gitignore    $DOTFILES/git/gitignore
 
 e_bold "Linking tmux"
-ln -s $DOTFILES/tmux.conf $HOME/.tmux.conf
+link ~/.tmux.conf    $DOTFILES/tmux.conf
 
 sleep 0.5
 e_success "All dotfiles linked successfully!"
