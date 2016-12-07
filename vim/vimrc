@@ -31,11 +31,8 @@ filetype plugin indent on 	" required
 let mapleader = ","
 let maplocalleader = "\\"
 
-set undodir=~/.vim/tmp/undo//     " unfo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
-set backup
 set noswapfile
+set laststatus=2
 
 " => Spaces and Tabs
 set tabstop=4		" number of visual spaces per TAB
