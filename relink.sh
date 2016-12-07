@@ -27,5 +27,6 @@ relink ~/.vim          $DOTFILES/vim
 relink ~/.tmux.conf    $DOTFILES/tmux.conf
 relink ~/.ssh/ssh_config $DOTFILES/ssh_config
 relink ~/Library/init/utils.sh $DOTFILES/utils/utils.sh
+relink ~/.config/powerline $DOTFILES/powerline
 
 e_success "Success!"
