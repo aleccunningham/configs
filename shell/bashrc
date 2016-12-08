@@ -15,11 +15,11 @@ source /usr/local/bin/virtualenvwrapper.sh
 # -----------------------------------------------------------------------------
 # Shortcuts
 # -----------------------------------------------------------------------------
-alias l='ls'
+alias l.='ls'
+alias ls='ls -la'
 alias du='du -sh'
 alias fn='find . -name'
 alias sb='source $HOME/.bash_profile'
-alias envs='cd $WORKON_HOME'
 alias ..='cd ..'
 alias ...='cd ../../'                       # Go back 2 directory levels
 alias .3='cd ../../../'                     # Go back 3 directory levels
@@ -47,7 +47,6 @@ alias py='python'
 alias rmpyc='find . -name "*.pyc" -exec rm {} \;'
 alias dm='python manage.py'
 alias drun='python manage.py runserver'
-alias duser='m createsuperuser --user=alec --email=aleccunningham96@gmail.com'
 
 # -----------------------------------------------------------------------------
 # PostgreSQL

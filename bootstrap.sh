@@ -19,11 +19,13 @@ DOTFILES="$HOME/dotfiles"
 CODE="$HOME/Code"
 GITHUB="$HOME/Github"
 INIT="~/Library/init/"
+SSH="$HOME/.ssh"
 
 e_header "Create config directories if absent"
 if [[ ! -d $CODE ]] ; then mkdir -p $CODE
 if [[ ! -d $GITHUB ]] ; then mkdir -p $GITHUB
 if [[ ! -d $INIT ]] ; then sudo mkdir -p $INIT
+if [[ ! -d $SSH ]] ; then mkdir -p $SSH
 e_success "Directories created"
 
 e_header "Installing homebrew..."

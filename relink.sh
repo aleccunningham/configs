@@ -28,6 +28,7 @@ relink ~/.vim          $DOTFILES/vim
 relink ~/.tmux.conf    $DOTFILES/tmux.conf
 relink ~/Library/init/utils.sh $DOTFILES/utils/utils.sh
 relink ~/.config/powerline $DOTFILES/powerline
+relink ~/.ssh          $DROPBOX/ssh
 relink ~/.ssh/ssh_config $DOTFILES/ssh_config
 relink ~/.ssh/id_rsa     $DROPBOX/ssh/id_rsa
 relink ~/.ssh/id_rsa.pub $DROPBOX/ssh/id_rsa.pub
