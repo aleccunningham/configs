@@ -16,6 +16,7 @@ relink() {
 }
 
 DOTFILES="$HOME/dotfiles"
+DROPBOX="$HOME/Dropbox"
 
 relink ~/.bash_profile $DOTFILES/shell/bash_profile
 relink ~/.bashrc       $DOTFILES/shell/bashrc
@@ -25,8 +26,10 @@ relink ~/.gitignore    $DOTFILES/git/gitignore
 relink ~/.vimrc        $DOTFILES/vim/vimrc
 relink ~/.vim          $DOTFILES/vim
 relink ~/.tmux.conf    $DOTFILES/tmux.conf
-relink ~/.ssh/ssh_config $DOTFILES/ssh_config
 relink ~/Library/init/utils.sh $DOTFILES/utils/utils.sh
 relink ~/.config/powerline $DOTFILES/powerline
-
+relink ~/.ssh/ssh_config $DOTFILES/ssh_config
+relink ~/.ssh/id_rsa     $DROPBOX/ssh/id_rsa
+relink ~/.ssh/id_rsa.pub $DROPBOX/ssh/id_rsa.pub
+relink ~/.ssh/known_hosts $DROPBOX/ssh/known_hosts
 e_success "Success!"

@@ -17,7 +17,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 # -----------------------------------------------------------------------------
 alias l='ls'
 alias du='du -sh'
-alias ls='l -la'
 alias fn='find . -name'
 alias sb='source $HOME/.bash_profile'
 alias envs='cd $WORKON_HOME'
