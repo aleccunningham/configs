@@ -90,3 +90,8 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
+
+# ---------------------
+# Gist bash
+# ---------------------
+source /usr/local/share/gist/gist.bash

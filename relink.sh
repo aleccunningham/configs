@@ -23,6 +23,7 @@ relink ~/.bashrc       $DOTFILES/shell/bashrc
 relink ~/.profile      $DOTFILES/shell/profile
 relink ~/.gitconfig    $DOTFILES/git/gitconfig
 relink ~/.gitignore    $DOTFILES/git/gitignore
+relink ~/.gist         $DOTFILES/git/gist
 relink ~/.vimrc        $DOTFILES/vim/vimrc
 relink ~/.vim          $DOTFILES/vim
 relink ~/.tmux.conf    $DOTFILES/tmux.conf

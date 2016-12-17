@@ -45,6 +45,7 @@ easy_install pip
 pip install virtualenv virtualenvwrapper fabric pep8 flake8 subliminal pytmux
 e_success "Done"
 
+
 e_header "Creating symlinks"
 sleep 0.5
 
@@ -84,8 +85,10 @@ link ~/.tmux.conf    $DOTFILES/tmux.conf
 sleep 0.5
 e_success "All dotfiles linked successfully!"
 
-e_bold "Make vim tmp dirs"
-mkdir -p ~/.vim/{backups,swaps,undo}
+e_bold "Installing and symlink gist"
+pip install python-gist
+link ~./gist $DOTFILES/git/gist
+
 
 e_header "GPG, PGP, and SSH config"
 brew install gnupg2
