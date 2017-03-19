@@ -4,7 +4,9 @@ export PATH=/$PATH:/usr/local/sbin
 # Postgresql
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin
 # Node Path
-export PATH=$PATH:/usr/local/Cellar/nvm/0.32.1/versions/node/v0.12.2/bin
+export PATH=$PATH:/usr/local/bin/node
 # Variable definitions
 export POWERLINE_PATH=/usr/local/lib/python2.7/site-packages/powerline
-export NVM_DIR="$(brew --prefix nvm)"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# export NVM_DIR="$(brew --prefix nvm)"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
+export PATH="$PATH:`yarn global bin`"

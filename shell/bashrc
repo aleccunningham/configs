@@ -95,3 +95,5 @@ fi
 # Gist bash
 # ---------------------
 source /usr/local/share/gist/gist.bash
+
+export PATH="$HOME/.yarn/bin:$PATH"

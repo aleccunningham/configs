@@ -1,3 +1,7 @@
+Host manager0
+  HostName ec2-35-165-207-118.us-west-2.compute.amazonaws.com
+  ForwardAgent yes
+
 Host github.com
   IdentityFile ~/.ssh/github
 
