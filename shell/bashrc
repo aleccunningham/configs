@@ -15,8 +15,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 # -----------------------------------------------------------------------------
 # Shortcuts
 # -----------------------------------------------------------------------------
-alias l.='ls'
-alias ls='ls -la'
+alias l.='ls -la'
 alias du='du -sh'
 alias fn='find . -name'
 alias sb='source $HOME/.bash_profile'
@@ -30,34 +29,21 @@ alias f='open -a Finder ./'
 # ack
 alias pack='ack --type=python'
 
-# tmux
-alias new='tmux new -s'
-alias att='tmux attach -t'
-
-#   lr:  Full Recursive Directory Listing
-#   ------------------------------------------
+# lr:  Full Recursive Directory Listing
+# ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete && echo Removed DS_Store files"
 
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
 # -----------------------------------------------------------------------------
-# Python & Django
+# Python 
 # -----------------------------------------------------------------------------
 alias py='python'
-alias rmpyc='find . -name "*.pyc" -exec rm {} \;'
-alias dm='python manage.py'
-alias drun='python manage.py runserver'
+alias rmpyc='find . -name "*.pyc" -exec rm {} \; && echo Removed pyc files'
 
-# -----------------------------------------------------------------------------
-# PostgreSQL
-# -----------------------------------------------------------------------------
-alias startpostgres='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias stoppostgres='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
-
-#   ---------------------------
-#   6. NETWORKING
-#   ---------------------------
-
+# ---------------------------
+# Networking
+# ---------------------------
 alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
 alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
 alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache

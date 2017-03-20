@@ -41,7 +41,7 @@ set expandtab		" tabs are spaces
 
 " => UI Config
 syntax on
-colorscheme solarized
+colorscheme buddy
 set background=dark
 set number		" show line numbers
 set cursorline		" highlight current line

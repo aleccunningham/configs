@@ -33,7 +33,7 @@ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 export PATH=/usr/local/bin:$PATH
 
 e_header "Installing all the homebrew things..."
-brew install ack automake cmake git openssl ruby tmux unrar wget
+brew install ack automake cmake git openssl ruby tmux unrar wget shpotify
 e_success "Done"
 
 e_header "Installing Python..."
@@ -45,6 +45,9 @@ easy_install pip
 pip install virtualenv virtualenvwrapper fabric pep8 flake8 subliminal pytmux
 e_success "Done"
 
+e_header = "Installing system Python packages..."
+pip instlall -r requirements.txt
+e_success "Done"
 
 e_header "Creating symlinks"
 sleep 0.5
