@@ -2,6 +2,19 @@ TODO:
  - link gist config
  - gem install bundler, jekyll, 
 
+
+## Python3
+
+```Bash
+$ pip3 install --upgrade pip setuptools wheel
+$ pip3 install <package>
+# They will install into the site-package directory
+$ /usr/local/lib/python3.6/site-packages
+```
+
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete && echo Removed DS_Store files"
+# -----------------------------------------------------------------------------
+
 # Dotfiles, with a focus on OSX security
 
 A collection of files with shortcuts and plugins that I use on a day to day basis, and would install on any new machine.
