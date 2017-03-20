@@ -33,7 +33,7 @@ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 export PATH=/usr/local/bin:$PATH
 
 e_header "Installing all the homebrew things..."
-brew install ack automake cmake git openssl ruby tmux unrar wget shpotify
+brew install ack automake cmake git openssl ruby tmux unrar wget shpotify googler
 e_success "Done"
 
 e_header "Installing Python..."
