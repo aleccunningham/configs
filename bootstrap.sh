@@ -37,7 +37,7 @@ brew install ack automake cmake git openssl ruby tmux unrar wget shpotify google
 e_success "Done"
 
 e_header "Installing Python..."
-brew install python --framework
+brew install python3
 e_success "Done"
 
 e_header "Installing pip and virtualenv..."
