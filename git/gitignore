@@ -1,8 +1,4 @@
-.DS_Store
-.svn
-*~
-*.swp
-*.rbc
+node_modules/
+DS_Store
 *.pyc
-tags
-venv/
+.env
