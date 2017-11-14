@@ -1,0 +1,32 @@
+Host manager0
+  HostName ec2-35-165-207-118.us-west-2.compute.amazonaws.com
+  ForwardAgent yes
+
+Host jenkins
+  HostName 172.16.3.248
+  User analyte 
+
+Host gitlab
+  HostName 172.16.3.253
+  User analyte
+
+Host coverage
+  HostName 127.16.1.236
+  User automation
+
+Host build1
+  Hostname build1.analytemedia.com
+  User analyte
+
+
+Host *
+  Protocol 2
+  HashKnownHosts yes
+  IdentitiesOnly yes
+  VisualHostKey yes
+  PasswordAuthentication no
+  StrictHostKeyChecking no
+  ControlMaster auto
+  ControlPath ~/.ssh/master-%r@%h:%p
+  ControlPersist 2m
+  UseRoaming no
