@@ -1,8 +1,9 @@
 " => .vimrc
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
 
 set nocompatible	" be improved, required
+set rtp+=/usr/local/opt/fzf
 filetype off		" requried
 
 " set the runtime path to invlude Vundle and initialize
@@ -16,7 +17,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'kien/ctrlp.vim'
-Plugin 'fatih/vim-go'
 
 " all Plugins must be added before the following line
 call vundle#end()	" required
@@ -42,7 +42,7 @@ set expandtab		" tabs are spaces
 
 " => UI Config
 syntax on
-colorscheme buddy
+colorscheme eddie
 set background=dark
 set number		" show line numbers
 set cursorline		" highlight current line
