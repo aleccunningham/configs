@@ -1,0 +1,192 @@
+# -----------------------------------------------------------------------------
+# Environment
+# -----------------------------------------------------------------------------
+
+export EDITOR='vim'
+export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
+
+
+#-----------------------------------------------------------------------------
+# GCP
+# ---------------------------------------------------------------------------
+
+alias g='gcloud'
+alias gconfig='gcloud config configurations'
+alias gce='gcloud compute'
+alias gke='gcloud container'
+alias gci='gcloud alpha interactive'
+
+# -----------------------------------------------------------------------------
+# virtualenv
+# -----------------------------------------------------------------------------
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code
+#source /usr/local/bin/virtualenvwrapper.sh
+
+# -----------------------------------------------------------------------------
+# fzf functions
+# -----------------------------------------------------------------------------
+
+flspass() {
+  lpass show -c --password $(lpass ls  | fzf | awk '{print $(NF)}' | sed 's/\]//g')
+}
+
+fusage() {
+  echo "
+  fo=\`Open the selected file via CTRL-E or Enter\`
+  fcd=\`CD into the directory of a selected file\`
+  fh=\`Repeat recent zsh history\`
+  fkill=\`Find a processes PID and kill it\`
+  fbr=\`Checkout git branch, sorted by most recent commits\`
+  fcoc=\`Checkout a git commit\`
+  fshow=\`Git commit browser\`
+  fstash=\`Handle git stashes\`
+  "
+}
+
+# Open the selected file via
+# - CTRL-O to open with the `open` command
+# - CTRL-E or the Enter key to open with $EDITOR
+fo() {
+  local out file key
+  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+  key=$(head -1 <<< "$out")
+  file=$(head -2 <<< "$out" | tail -1)
+  if [ -n "$file" ]; then
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+  fi
+}
+
+# CD into the directory of a selected file
+fcd() {
+  local file
+  local dir
+  file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# Repeat recent zsh history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+}
+
+# Kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
+# Checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# Checkout git commit
+fcoc() {
+  local commits commit
+  commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
+  commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+  git checkout $(echo "$commit" | sed "s/ .*//")
+}
+
+# Git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+# type fstash to get a list of your stashes
+# # enter shows you the contents of the stash
+# # ctrl-d shows a diff of the stash against your current HEAD
+# # ctrl-b checks the stash out as a branch, for easier merging
+fstash() {
+  local out q k sha
+  while out=$(
+    git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
+    fzf --ansi --no-sort --query="$q" --print-query \
+        --expect=ctrl-d,ctrl-b);
+  do
+    mapfile -t out <<< "$out"
+    q="${out[0]}"
+    k="${out[1]}"
+    sha="${out[-1]}"
+    sha="${sha%% *}"
+    [[ -z "$sha" ]] && continue
+    if [[ "$k" == 'ctrl-d' ]]; then
+      git diff $sha
+    elif [[ "$k" == 'ctrl-b' ]]; then
+      git stash branch "stash-$sha" $sha
+      break;
+    else
+      git stash show -p $sha
+    fi
+  done
+}
+
+
+# -----------------------------------------------------------------------------
+# Shortcuts
+# -----------------------------------------------------------------------------
+
+mkcdir() {                                  # Make a directory and CD into it
+  mkdir -p -- "$1" &&
+  cd -P -- "$1"
+}
+
+alias ..='cd ..'                            # Shorthand to go up one dir
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+
+alias f='open -a Finder ./'                 # Open the directory in Finder
+alias l.='ls -la'                           # ls including hidden files
+alias reload='source ~/.zshrc'              # Reload zshrc configuration
+
+alias rmds="find . -type f -name '*.DS_Store' -ls -delete"
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+
+pyclean () {
+    find . -regex "\(.*__pycache__.*\|*.py[co]\)" -delete
+}
+
+# -----------------------------------------------------------------------------
+# Networking
+# -----------------------------------------------------------------------------
+
+alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
+alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
+alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
+alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
+alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
+alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
+alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
+
+# -----------------------------------------------------------------------------
+# Completion
+# -----------------------------------------------------------------------------
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
