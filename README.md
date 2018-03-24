@@ -2,6 +2,15 @@
 
 A collection of files with shortcuts and plugins that I use on a day to day basis, and would install on any new machine.
 
+### Installation
+
+Prerequisites:
+
+1. [Install Xcode Command Line Tools](http://railsapps.github.io/xcode-command-line-tools.html).
+1. [Generate SSH key](https://help.github.com/articles/generating-ssh-keys/).
+1. [Install Homebrew](http://brew.sh/).
+1. [Install Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)
+
 ### macOS
 
 Along with bootstrap.sh that universally applies to most UNIX distributions, script files osx.sh applies some great defaults for a clean macOS install.
@@ -29,3 +38,5 @@ The following applications are recommended to include with a clean install:
 - [iTerm](https://www.iterm2.com/)
 - [Little Snitch](https://www.obdev.at/products/littlesnitch/index.html)
 - [Micro Snitch](https://www.obdev.at/products/microsnitch/index.html)
+
+:shipit:
