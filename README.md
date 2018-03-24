@@ -1,43 +1,6 @@
-TODO:
- - link gist config
- - gem install bundler, jekyll, 
-
-
-## Python3
-
-```Bash
-$ pip3 install --upgrade pip setuptools wheel
-$ pip3 install <package>
-# They will install into the site-package directory
-$ /usr/local/lib/python3.6/site-packages
-```
-
-alias rmds="find . -type f -name '*.DS_Store' -ls -delete && echo Removed DS_Store files"
-# -----------------------------------------------------------------------------
-
 # Dotfiles, with a focus on OSX security
 
 A collection of files with shortcuts and plugins that I use on a day to day basis, and would install on any new machine.
-
-## Installation
-
-Running bootstrap.sh will:
-- Create ~/Code, ~/Github, and ~/Library/init/
-  - Personal projects are located in Code, a mix of Github repositories for configs can be cloned to Github, and init is used for assorted bash scripts
-- Install Homebrew
-  - ack, automake, cmake, git, openssl, ruby, tmux, unrar, wget
-- Install Python, with the following packages:
- - virtualenv, virtualenvwrapper, fabric, pep8, flake8, subliminal, pytmux
-- Create symlinks for:
-  - utils.sh
-  - .bash_profile
-  - .bashrc
-  - .profile
-  - .gitconfig
-  - .gitignore
-  - tmux.conf
-- Vim folders for swap, backup, and undo
-- Optionally; install node.js
 
 ### macOS
 
