@@ -16,11 +16,11 @@ dbash() {
 
 # Cleanup docker containers, volumes, and images
 dcleanup(){
-	local containers
-	mapfile -t containers < <(docker ps -aq 2>/dev/null)
-	docker rm "${containers[@]}" 2>/dev/null
-	local volumes
-	mapfile -t volumes < <(docker ps --filter status=exited -q 2>/dev/null)
+	   local containers
+	   mapfile -t containers < <(docker ps -aq 2>/dev/null)
+	   docker rm "${containers[@]}" 2>/dev/null
+	   local volumes
+	   mapfile -t volumes < <(docker ps --filter status=exited -q 2>/dev/null)
 	docker rm -v "${volumes[@]}" 2>/dev/null
 	local images
 	mapfile -t images < <(docker images --filter dangling=true -q 2>/dev/null)
@@ -66,10 +66,10 @@ DOCKER_REPO_PREFIX=r.alec.cx
 # https://aws.amazon.com/cli/
 aws(){
 	docker run -it --rm \
-		-v "${HOME}/.aws:/root/.aws" \
-		--log-driver none \
-		--name aws \
-		${DOCKER_REPO_PREFIX}/awscli "$@"
+		  -v "${HOME}/.aws:/root/.aws" \
+		  --log-driver none \
+		  --name aws \
+		  ${DOCKER_REPO_PREFIX}/awscli "$@"
 }
 
 # https://github.com/sharkdp/bat
@@ -96,19 +96,19 @@ ctop() {
 # https://cloud.google.com/sdk/gcloud/
 dgcloud(){
 	docker run --rm -it \
-		-v "${HOME}/.gcloud:/root/.config/gcloud" \
-		-v "${HOME}/.ssh:/root/.ssh:ro" \
-		-v "$(command -v docker):/usr/bin/docker" \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		--name gcloud \
-		${DOCKER_REPO_PREFIX}/gcloud "$@"
+		  -v "${HOME}/.gcloud:/root/.config/gcloud" \
+		  -v "${HOME}/.ssh:/root/.ssh:ro" \
+		  -v "$(command -v docker):/usr/bin/docker" \
+		  -v /var/run/docker.sock:/var/run/docker.sock \
+		  --name gcloud \
+		  ${DOCKER_REPO_PREFIX}/gcloud "$@"
 }
 
 
 # https://github.com/hishamhm/htop
 htop(){
 	docker run --rm -it \
-        --pid host \
+      --pid host \
 	    --net none \
 	    --name htop \
 	    ${DOCKER_REPO_PREFIX}/htop
@@ -118,10 +118,10 @@ htop(){
 # https://httpd.apache.org/docs/2.4/programs/htpasswd.html
 htpasswd(){
 	docker run --rm -it \
-		--net none \
-		--name htpasswd \
-		--log-driver none \
-		${DOCKER_REPO_PREFIX}/htpasswd "$@"
+		  --net none \
+		  --name htpasswd \
+		  --log-driver none \
+		  ${DOCKER_REPO_PREFIX}/htpasswd "$@"
 }
 
 # https://github.com/jakubroztocil/httpie
@@ -145,9 +145,9 @@ gitsome(){
 # https://github.com/mobile-shell/mosh
 mosh() {
 	docker run --rm -it \
-		-e TERM=xterm-256color \
-		-v $HOME/.ssh:/root/.ssh \
-		${DOCKER_REPO_PREFIX}/mosh "$@"
+		  -e TERM=xterm-256color \
+		  -v $HOME/.ssh:/root/.ssh \
+		  ${DOCKER_REPO_PREFIX}/mosh "$@"
 }
 
 # Terminal based email client
@@ -157,7 +157,7 @@ mutt(){
     	-v /etc/localtime:/etc/localtime \
     	-e GMAIL -e GMAIL_NAME \
     	-e GMAIL_PASS \
-		-e GMAIL_FROM \
+		  -e GMAIL_FROM \
     	-v $HOME/.gnupg:/home/user/.gnupg \
     	--name mutt \
     	jess/mutt
@@ -182,11 +182,11 @@ nmap(){
 # pgAdmin GUI postgres access
 pgAdmin() {
 	docker run -p 443:443 \
-		-v "$HOME/.pgadmin:/var/lib/pgadmin" \
-		-v "$HOME/.postgresql/postgres.crt:/certs/server.cert" \
-		-v "$HOME/.postgresql/postgres.key:/certs/server.key" \
-		-v "/tmp/servers.json:/servers.json" \
-		-e "PGADMIN_DEFAULT_EMAIL=user@domain.com" \
+		    -v "$HOME/.pgadmin:/var/lib/pgadmin" \
+		    -v "$HOME/.postgresql/postgres.crt:/certs/server.cert" \
+		    -v "$HOME/.postgresql/postgres.key:/certs/server.key" \
+		    -v "/tmp/servers.json:/servers.json" \
+		    -e "PGADMIN_DEFAULT_EMAIL=user@domain.com" \
         -e "PGADMIN_DEFAULT_PASSWORD=SuperSecret" \
         -e "PGADMIN_ENABLE_TLS=True" \
         -d dpage/pgadmin4
@@ -195,14 +195,14 @@ pgAdmin() {
 # Postgres database
 pg_start() {
 	docker run -d \
-		--name postgres \
-		-v pg_data:/var/lib/postgresql/data \
-		postgres/postgres
+		    --name postgres \
+		    -v pg_data:/var/lib/postgresql/data \
+		    postgres/postgres
 }
 
 # Stop postgres but persist data
 pg_stop() {
-    docker stop postgres
+  docker stop postgres
 }
 
 # Destroy postgres database
@@ -222,16 +222,16 @@ kvm(){
 	modprobe kvm
 
 	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-v /run/libvirt:/var/run/libvirt \
-		-e "DISPLAY=unix${DISPLAY}" \
-		--link pulseaudio:pulseaudio \
-		-e PULSE_SERVER=pulseaudio \
-		--group-add audio \
-		--name kvm \
-		--privileged \
-		jessfraz/kvm
+		  -v /etc/localtime:/etc/localtime:ro \
+		  -v /tmp/.X11-unix:/tmp/.X11-unix \
+		  -v /run/libvirt:/var/run/libvirt \
+		  -e "DISPLAY=unix${DISPLAY}" \
+		  --link pulseaudio:pulseaudio \
+		  -e PULSE_SERVER=pulseaudio \
+		  --group-add audio \
+		  --name kvm \
+		  --privileged \
+		  jessfraz/kvm
 }
 
 # Main interface for managing virsh guest domains
@@ -240,11 +240,11 @@ virsh(){
 	relies_on kvm
 
 	docker run -it --rm \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /run/libvirt:/var/run/libvirt \
-		--log-driver none \
-		--net container:kvm \
-		jessfraz/libvirt-client "$@"
+		  -v /etc/localtime:/etc/localtime:ro \
+		  -v /run/libvirt:/var/run/libvirt \
+		  --log-driver none \
+		  --net container:kvm \
+		  jessfraz/libvirt-client "$@"
 }
 
 # GUI view of virtual machines
@@ -253,15 +253,15 @@ virt_viewer(){
 	relies_on kvm
 
 	docker run -it --rm \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix  \
-		-e "DISPLAY=unix${DISPLAY}" \
-		-v /run/libvirt:/var/run/libvirt \
-		-e PULSE_SERVER=pulseaudio \
-		--group-add audio \
-		--log-driver none \
-		--net container:kvm \
-		jessfraz/virt-viewer "$@"
+		  -v /etc/localtime:/etc/localtime:ro \
+		  -v /tmp/.X11-unix:/tmp/.X11-unix  \
+		  -e "DISPLAY=unix${DISPLAY}" \
+		  -v /run/libvirt:/var/run/libvirt \
+		  -e PULSE_SERVER=pulseaudio \
+		  --group-add audio \
+		  --log-driver none \
+		  --net container:kvm \
+		  jessfraz/virt-viewer "$@"
 }
 
 # Terminal based twitter client
@@ -276,15 +276,15 @@ rainbowstream(){
 # https://linux.die.net/man/8/traceroute
 traceroute() {
 	docker run --rm -it \
-		--net host \
-		${DOCKER_REPO_PREFIX}/traceroute
+		  --net host \
+		  ${DOCKER_REPO_PREFIX}/traceroute
 }
 
 # Robust network protocol analyzer
 # https://www.wireshark.org/
 wireshark() {
 	docker run -d \
-		--name wireshark \
+		  --name wireshark \
 	    #-v /etc/localtime:/etc/localtime:ro \
 	    -v /tmp/.X11-unix:/tmp/.X11-unix \
 	    -e DISPLAY=unix$DISPLAY \
