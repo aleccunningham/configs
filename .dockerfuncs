@@ -298,7 +298,7 @@ traceroute() {
 wireshark() {
 	docker run -d \
 		--name wireshark \
-		#-v /etc/localtime:/etc/localtime:ro \
+		-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$DISPLAY \
 		${DOCKER_REPO_PREFIX}/wireshark
