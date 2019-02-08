@@ -1,41 +1,44 @@
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-source ~/.profile
-
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/alec/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="refined"
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-plugins=(
-  git
-  k
-  z
-  ruby
-  docker
-)
-
-# Source the z plugin for directory jumping
-source $HOME/z.sh
 
 # Source oh-my-zsh itself
 source $ZSH/oh-my-zsh.sh
 
+# Set name of the theme to load --- if set to "random", it will
+ZSH_THEME="refined"
+
+# Completion configuration
+# autoload -U compinit
+# compinit
+
+# Complete path when aliased command
+# setopt complete_aliases
+
+# auto menu complete
+# setopt auto_menu
+
+# auto change directory
+# setopt auto_cd
+
+# auto directory pushd that you can get dirs list by cd -[tab]
+# setopt auto_pushd
+
+# compacked complete list display
+# setopt list_packed
+
+# Set up $PATH
+[ -f $HOME/.zprofile ] && source $HOME/.zprofile
+
+# Source the z plugin for directory jumping
+source $HOME/z.sh
+
+# oh-my-zsh plugins
+plugins=(git k z ruby docker)
+
 # User configuration
 export MANPATH="/usr/local/man:$MANPATH"
 
-# You may need to manually set your language environment
+# Language configuration
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
