@@ -176,7 +176,23 @@ netcat() {
 nmap() {
 	docker run --rm -it \
 		--net host \
+		--privileged \
 		${DOCKER_REPO_PREFIX}/nmap "$@"
+}
+
+# iftop
+iftop() {
+	docker run --rm -it \
+		--net host \
+		${DOCKER_REPO_PREFIX}/iftop "$@"
+}
+
+# iproute2
+# http://lartc.org/howto/lartc.iproute2.tour.html
+ip() {
+	docker run -it --rm \
+		--net host \
+		${DOCKER_REPO_PREFIX}/iproute2 "$@"
 }
 
 # Postgres database
@@ -219,6 +235,16 @@ kvm() {
 		--name kvm \
 		--privileged \
 		jessfraz/kvm
+}
+
+
+# Example
+# $ tcpdump -i eth2 port 80
+tcpdump() {
+	docker run \
+		-v $HOME/.tcpdump:/data \
+		--net=host \
+		${DOCKER_REPO_PREFIX}/tcpdump
 }
 
 # Main interface for managing virsh guest domains
