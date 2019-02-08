@@ -64,7 +64,7 @@ DOCKER_REPO_PREFIX=r.alec.cx
 
 # awscli tool for aws web services
 # https://aws.amazon.com/cli/
-aws(){
+aws() {
 	docker run -it --rm \
 		-v "${HOME}/.aws:/root/.aws" \
 		--log-driver none \
@@ -89,12 +89,12 @@ ctop() {
 	docker run --rm -ti \
   		--name=ctop \
   		-v /var/run/docker.sock:/var/run/docker.sock \
-  		quay.io/vektorlab/ctop:latest
+  		${DOCKER_REPO_PREFIX}/ctop
 }
 
 # Google cloud cli tool
 # https://cloud.google.com/sdk/gcloud/
-dgcloud(){
+dgcloud() {
 	docker run --rm -it \
 		-v "${HOME}/.gcloud:/root/.config/gcloud" \
 		-v "${HOME}/.ssh:/root/.ssh:ro" \
@@ -106,7 +106,7 @@ dgcloud(){
 
 
 # https://github.com/hishamhm/htop
-htop(){
+htop() {
 	docker run --rm -it \
 		--pid host \
 		--net none \
@@ -116,7 +116,7 @@ htop(){
 
 # Generate basic auth for nginx or apache
 # https://httpd.apache.org/docs/2.4/programs/htpasswd.html
-htpasswd(){
+htpasswd() {
 	docker run --rm -it \
 		--net none \
 		--name htpasswd \
@@ -125,15 +125,14 @@ htpasswd(){
 }
 
 # https://github.com/jakubroztocil/httpie
-http(){
+http() {
 	docker run -t --rm \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		--log-driver none \
+		--net=host \
 		${DOCKER_REPO_PREFIX}/httpie "$@"
 }
 
 # https://github.com/donnemartin/gitsome
-gitsome(){
+gitsome() {
 	docker run --rm -it -v $(pwd):/src/ \
 		--name gitsome \
 		-v "${HOME}/.gitsomeconfig:/root/.gitsomeconfig" \
@@ -152,10 +151,11 @@ mosh() {
 
 # Terminal based email client
 # http://www.mutt.org/
-mutt(){
+mutt() {
 	docker run -it \
     	-v /etc/localtime:/etc/localtime \
-    	-e GMAIL -e GMAIL_NAME \
+    	-e GMAIL \
+		-e GMAIL_NAME \
     	-e GMAIL_PASS \
 		-e GMAIL_FROM \
     	-v $HOME/.gnupg:/home/user/.gnupg \
@@ -165,7 +165,7 @@ mutt(){
 
 # Networking utility which reads and writes data across network connections
 # http://netcat.sourceforge.net/
-netcat(){
+netcat() {
 	docker run --rm -it \
 		--net host \
 		${DOCKER_REPO_PREFIX}/netcat "$@"
@@ -173,7 +173,7 @@ netcat(){
 
 # Security scanner, port scanner, and network exploration tool
 # https://nmap.org/
-nmap(){
+nmap() {
 	docker run --rm -it \
 		--net host \
 		${DOCKER_REPO_PREFIX}/nmap "$@"
@@ -201,7 +201,7 @@ pg_delete() {
 
 # Full virtualization driver
 # https://www.linux-kvm.org/page/Main_Page
-kvm(){
+kvm() {
 	del_stopped kvm
 	relies_on pulseaudio
 
@@ -223,7 +223,7 @@ kvm(){
 
 # Main interface for managing virsh guest domains
 # https://linux.die.net/man/1/virsh
-virsh(){
+virsh() {
 	relies_on kvm
 
 	docker run -it --rm \
@@ -236,7 +236,7 @@ virsh(){
 
 # GUI view of virtual machines
 # https://linux.die.net/man/1/virt-viewer
-virt_viewer(){
+virt_viewer() {
 	relies_on kvm
 
 	docker run -it --rm \
@@ -253,7 +253,7 @@ virt_viewer(){
 
 # Terminal based twitter client
 # https://github.com/orakaro/rainbowstream
-rainbowstream(){
+rainbowstream() {
 	docker run --rm -it \
 		-v "${HOME}/.rainbow_oauth:/root/.rainbow_oauth" \
 		-v "${HOME}/.rainbow_config.json:/root/.rainbow_config.json" \
@@ -275,5 +275,5 @@ wireshark() {
 		#-v /etc/localtime:/etc/localtime:ro \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-e DISPLAY=unix$DISPLAY \
-		${DOCKER_REPO_PREFIX}/eireshark
+		${DOCKER_REPO_PREFIX}/wireshark
 }
