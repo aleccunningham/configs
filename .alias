@@ -24,6 +24,12 @@ alias find="fd"
 
 alias grep="rg"
 
+# sed(1) substitution
+#
+# https://github.com/chmln/sd
+
+alias sed="sd"
+
 #
 # System
 #
