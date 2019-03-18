@@ -144,6 +144,13 @@ http() {
 		${DOCKER_REPO_PREFIX}/httpie "$@"
 }
 
+# https://github.com/timvisee/ffsend
+ffsend() {
+  docker run --rm -it \
+    -v $(pwd):/data \
+    timvisee/ffsend "$@"
+}
+
 # https://github.com/donnemartin/gitsome
 gitsome() {
 	docker run --rm -it \
@@ -200,21 +207,6 @@ ip() {
 		${DOCKER_REPO_PREFIX}/iproute2 "$@"
 }
 
-# iftop
-iftop() {
-	docker run --rm -it \
-		--net host \
-		${DOCKER_REPO_PREFIX}/iftop "$@"
-}
-
-# iproute2
-# http://lartc.org/howto/lartc.iproute2.tour.html
-ip() {
-	docker run -it --rm \
-		--net host \
-		${DOCKER_REPO_PREFIX}/iproute2 "$@"
-}
-
 # Postgres database
 pg_start() {
 	docker run -d \
@@ -256,6 +248,7 @@ kvm() {
 		--privileged \
 		jessfraz/kvm
 }
+
 
 # Example
 # $ tcpdump -i eth2 port 80

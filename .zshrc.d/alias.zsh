@@ -7,28 +7,36 @@
 # https://the.exa.website/
 # https://github.com/supercrabtree/k
 
-alias ls="l"
-alias ll="l -ah"
-alias lls="l -a"
+alias ls="ls -la"                           # ls:   Pass -la flag by default
+alias l="ls"                                 # l:    List files using `k`
 
 # find(1) substitution
 #
 # https://github.com/sharkdp/fd
 
-alias find="fd"
+#alias find="fd"
 
 # grep(1) substitution
 #
 # https://github.com/BurntSushi/ripgrep
 # https://docs.rs/regex/1/regex/#syntax
 
-alias grep="rg"
+#alias grep="rg"
 
 # sed(1) substitution
 #
 # https://github.com/chmln/sd
 
-alias sed="sd"
+#alias sed="sd"
+
+#
+# tmux
+#
+
+alias mux='tmux'
+alias muxls='tmux ls'
+alias muxks='tmux kill-session -t'
+alias muxatt='tmux att'
 
 #
 # System
@@ -36,19 +44,12 @@ alias sed="sd"
 
 alias ..='cd ..'                            # ..:     Shorthand to go up one dir
 alias ...='cd ../../'                       # ...:    Go back 2 directory levels
+alias ....='cd ../../../'                   # ....:   Go back 3 directory levels
+
 alias f='open -a Finder ./'                 # f:      Open the directory in Finder
 alias c='clear'                             # c:      Clear the terminal
 alias vim='nvim'                            # vim:    Use nvim instead
 alias reload="exec $SHELL -l"               # reload: Start fresh shell with sourced changes
-
-
-#
-# Linux-specifc
-#
-
-alias pwd="pwd | tee /dev/stderr | xsel --clipboard --input"
-alias update="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt clean"
-alias upgrade="update && sudo apt full-upgrade -y"
 
 #
 # Third party applications
@@ -67,21 +68,6 @@ alias p="pet"
 # https://github.com/mattn/memo
 
 alias m="memo"
-
-#
-# Network alias'
-#
-
-alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
-alias lsock='sudo /usr/sbin/lsof -i -P'             # lsock:        Display open sockets
-alias lsockU='sudo /usr/sbin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
-alias lsockT='sudo /usr/sbin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
-alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
-alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
-alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
-alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
-alias netlisteners='lsof -i -P | grep LISTEN'
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
 
 #
 # Docker Related
