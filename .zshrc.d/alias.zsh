@@ -39,6 +39,15 @@ alias muxks='tmux kill-session -t'
 alias muxatt='tmux att'
 
 #
+# tmux
+#
+
+alias tmux='mux'
+alias muxls='tmux ls'
+alias muxks='tmux kill-session -t'
+alias muxatt='tmux att'
+
+#
 # System
 #
 
