@@ -30,6 +30,11 @@ alias grep="rg"
 
 alias sed="sd"
 
+# cat(1) substitution
+#
+# https://github.com/sharkdp/bat
+alias cat="bat"
+
 #
 # System
 #

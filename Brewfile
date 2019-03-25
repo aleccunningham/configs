@@ -19,7 +19,6 @@ brew "cmake"
 brew "coreutils"
 brew "ctags"
 brew "libxml2"
-
 brew "openssl"
 
 #
