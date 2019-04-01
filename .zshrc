@@ -6,7 +6,7 @@ fi
 source ~/.zplug/init.zsh
 
 # Remotely source zsh scripts
-zplug "aleccunninghan/dotfiles", of:".zshrc.d/*.zsh", at:master
+zplug "aleccunningham/dotfiles", of:"zshrc.d/*.zsh", at:master
 # oh-my-zsh plugins
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
