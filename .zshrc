@@ -6,7 +6,7 @@ fi
 source ~/.zplug/init.zsh
 
 # Remotely source zsh scripts
-zplug "aleccunningham/zshrc.d", at:master
+zplug "aleccunningham/zshrc.d", at:work
 
 # oh-my-zsh plugins
 zplug "zsh-users/zsh-syntax-highlighting"
