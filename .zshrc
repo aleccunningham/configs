@@ -19,9 +19,6 @@ zplug 'themes/agnoster', from:oh-my-zsh # theme
 
 source ~/.zprofile
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -33,6 +30,3 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
