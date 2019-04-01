@@ -6,14 +6,15 @@ fi
 source ~/.zplug/init.zsh
 
 # Remotely source zsh scripts
-zplug "aleccunninghan/dotfiles", of:".zshrc.d/*.zsh", at:master
+zplug "aleccunningham/dotfiles", at:master
 # oh-my-zsh plugins
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 # CLI tools
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
 zplug "supercrabtree/k"                 # `k` ls for git
-
+zplug "rupa/z", use:z.sh
+# Theme
 zplug 'themes/agnoster', from:oh-my-zsh # theme
 
 source ~/.zprofile
