@@ -5,19 +5,21 @@ fi
 
 source ~/.zplug/init.zsh
 
+# Remotely source zsh scripts
+zplug "aleccunninghan/dotfiles", of:".zshrc.d/*.zsh", at:master
+# oh-my-zsh plugins
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
+# CLI tools
 zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug 'themes/agnoster', from:oh-my-zsh
+zplug "supercrabtree/k"                 # `k` ls for git
+
+zplug 'themes/agnoster', from:oh-my-zsh # theme
 
 source ~/.zprofile
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-for dotfile in ${HOME}/.zshrc.d/*.zsh; do
-    source $dotfile
-done
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
