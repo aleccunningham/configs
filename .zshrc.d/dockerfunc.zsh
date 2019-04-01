@@ -249,6 +249,14 @@ kvm() {
 		jessfraz/kvm
 }
 
+# Shellcheck
+# https://github.com/koalaman/shellcheck
+shellcheck() {
+    docker run \
+        -v $(pwd):/mnt \
+        ${DOCKER_REPO_PREFIX}/shellcheck "$@"
+}
+
 
 # Example
 # $ tcpdump -i eth2 port 80
