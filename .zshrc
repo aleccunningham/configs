@@ -5,30 +5,29 @@ fi
 
 source ~/.zplug/init.zsh
 
-autoload colors && colors
-setopt prompt_subst
+export DRONE_SERVER=https://jupyter.integracredit.com
+export DRONE_TOKEN=MyS2L9EbtAgXVgaUvnyO9RdtPk7bppwM
 
-zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh", defer:0 # Defer is needed for themes to load properly
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-#zplug "changyuheng/fz", defer:1
-#zplug "rupa/z", use:z.sh
-zplug 'themes/agnoster', from:oh-my-zsh
+# Remotely source zsh scripts
+zplug aleccunningham/zshrc.d, at:master
 
-source ~/.zprofile
+# oh-my-zsh plugins
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
+
+# CLI tools
+zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
+zplug supercrabtree/k                 # `k` ls for git
+zplug rupa/z, use:z.sh
+
+# Theme
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-# Shell functions
-source ${HOME}/.functions
-
-# Docker helper functions
-source ${HOME}/.dockerfunc
-
-# Extensive alias'
-source ${HOME}/.alias
+source ~/.zprofile
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -41,3 +40,9 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
