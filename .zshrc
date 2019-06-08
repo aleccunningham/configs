@@ -6,19 +6,23 @@ fi
 source ~/.zplug/init.zsh
 
 # Remotely source zsh scripts
-zplug "aleccunningham/zshrc.d", at:master
+zplug aleccunningham/zshrc.d, at:master
 
 # oh-my-zsh plugins
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
 
 # CLI tools
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "supercrabtree/k"                 # `k` ls for git
-zplug "rupa/z", use:z.sh
+zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
+zplug supercrabtree/k                 # `k` ls for git
+zplug rupa/z, use:z.sh
 
 # Theme
-zplug "themes/agnoster", from:oh-my-zsh
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+
+# Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 source ~/.zprofile
 
@@ -33,3 +37,9 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alec/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alec/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
