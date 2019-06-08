@@ -5,9 +5,6 @@ fi
 
 source ~/.zplug/init.zsh
 
-export DRONE_SERVER=https://jupyter.integracredit.com
-export DRONE_TOKEN=MyS2L9EbtAgXVgaUvnyO9RdtPk7bppwM
-
 # Remotely source zsh scripts
 zplug aleccunningham/zshrc.d, at:master
 
