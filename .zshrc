@@ -5,19 +5,23 @@ fi
 
 source ~/.zplug/init.zsh
 
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug 'themes/agnoster', from:oh-my-zsh
+# Remotely source zsh scripts
+zplug aleccunningham/zshrc.d, at:master
+
+# oh-my-zsh plugins
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
+
+# CLI tools
+zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
+zplug supercrabtree/k                 # `k` ls for git
+zplug rupa/z, use:z.sh
+
+# Theme
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 source ~/.zprofile
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-for dotfile in ${HOME}/.zshrc.d/*.zsh; do
-    source $dotfile
-done
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -30,6 +34,3 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
