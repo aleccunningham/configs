@@ -5,25 +5,25 @@ fi
 
 source ~/.zplug/init.zsh
 
+autoload -Uz compinit && compinit
+
 # Remotely source zsh scripts
-zplug "aleccunningham/zshrc.d", at:work
+zplug aleccunningham/zshrc.d, at:work
 
 # oh-my-zsh plugins
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
+zplug zsh-users/zsh-syntax-highlighting
+zplug zsh-users/zsh-history-substring-search
 
 # CLI tools
-zplug "junegunn/fzf-bin", from:gh-r, as:command, rename-to:fzf
-zplug "supercrabtree/k"                 # `k` ls for git
-zplug "rupa/z", use:z.sh
+zplug junegunn/fzf-bin, from:gh-r, as:command, rename-to:fzf
+zplug supercrabtree/k 
+zplug rupa/z, use:z.sh
 
 # Theme
-zplug "themes/agnoster", from:oh-my-zsh
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 source ~/.zprofile
-
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
